@@ -79,6 +79,13 @@ $(function() {
                 self.fileName(data.files[0].name);
 
                 var name = self.fileName().substr(0, self.fileName().lastIndexOf("."));
+                var profileList = self.profiles.items();
+                for (var i = 0; i < profileList.length; i++) {
+                    if (profileList[i].key == name.toLocaleLowerCase()) {
+                        self.profileDisplayName( profileList[i].name() );
+                        self.profileDescription( profileList[i].description() );
+                    }
+                }
                 self.placeholderName(self._sanitize(name).toLowerCase());
                 self.placeholderDisplayName(name);
                 self.placeholderDescription("Imported from " + self.fileName() + " on " + formatDate(new Date().getTime() / 1000));
